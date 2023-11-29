@@ -3,6 +3,7 @@
    padding: 0;
 } 
 
+
 nav{
     display: flex;
     border-radius: 50px ;
@@ -33,12 +34,15 @@ background-position: center;
     margin: 7px 30px;
 
 }
+@media screen and (max-width:100%) {
 .menu{
     margin-right: 400px;
     background-color:#FF6302;
     height: 80px;
     
     
+    
+}
 }
 
 ul{

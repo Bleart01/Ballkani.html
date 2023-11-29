@@ -3,9 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Regjistrohu.css">
     <title>Regjistrohu</title>
 </head>
 <body>
-    
+
+    <div class="menu">
+
+        <h1 class="regja">Regjistrimi <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+          </svg></h1>
+        <hr>
+        
+        
+    <form id="myform">
+                <label >  <input id="name" type="text" placeholder="Emri" autocomplete="given-name"></input></label>
+                <div id="nameError"> </div>
+                <label >  <input id="surname" type="text" placeholder="Mbiemri" autocomplete="family-name"></input></label>
+                <div id="surnameError"> </div>
+                <label >  <input id="username"type="text" placeholder="username" autocomplete="username"></input></label>
+                <div id="usernameError"> </div>
+                <label > <input id="email" type="text" placeholder="Email@gmail.com" autocomplete="email"></input></label>
+                <div id="emailError"> </div>
+                <label >  <input id="password" type="password" placeholder="******" autocomplete="new-password"></input></label>
+                <div id="passwordError"> </div>
+                
+                <button type="button" onclick="validate()" >Submit</button>
+                <!-- <a href="Projekti.html"><button type="button" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                  </svg> Home </button></a>
+                 -->
+
+                 <!-- <div id="successMessage" style="display: none;" >
+                    Te dhenat u ruajten me sukses!
+                </div> -->
+        
+                
+                <script>
+                    
+                    let nameRegex=/^[A-Z][a-z]{3,8}$/;
+                    let surnameRegex=/^[A-Z][a-z]{3,8}$/;
+                    let usernameRegex=/^[A-Za-z0-9]+$/;
+                    let emailRegex=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    let passwordRegex=/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;  
+                    
+
+                    function validate(){
+                        console.log('Validimi filloi :');
+
+
+                        let emriInput=document.getElementById('name');
+                     let mbiemriInput=document.getElementById('surname');
+                  let usernameInput=document.getElementById('username');
+                  console.log('Username value:', usernameInput.value.trim());
+                let emailInput=document.getElementById('email');
+            let pasInput=document.getElementById('password');
+        let emriError=document.getElementById('nameError');
+                             let mbiemriError=document.getElementById('surnameError');
+                                let usernameError=document.getElementById('usernameError');
+                let emailError=document.getElementById('emailError');
+                let passwordError=document.getElementById('passwordError');
+                // let succesMessage=document.getElementById('succesMessage');
+
+                emriError.innerText='';
+                mbiemriError.innerText='';
+                usernameError.innerText='';
+                emailError.innerText='';
+                passwordError.innerText='';
+
+
+                
+                
+                    
+                    if(!nameRegex.test(emriInput.value.trim())){
+                        
+                 emriError.innerText='Emri duhet te filloje me shkronje te madhe dhe duhet te permbaje se paku 3 elemente';
+                 console.log('Emri validation failed');
+                 return ;
+                    }
+                    if(!surnameRegex.test(mbiemriInput.value.trim())){
+                        
+                      mbiemriError.innerText='Mbiemri duhet te filloje me shkronje te madhe dhe duhet te permbaje se paku 3 elemente';
+                      console.log('Mbiemri validation failed');
+                        return ;
+                           }
+                           if(!usernameRegex.test(usernameInput.value.trim())){
+                        
+                        usernameError.innerText='Username duhet te filloje me shkronje te madhe dhe duhet te permbaje ses paku 3 elemente';
+                        console.log('Username validation failed');
+                        return ;
+                           }
+                           
+
+                    if(!emailRegex.test(emailInput.value.trim())){
+                        emailError.innerText='Emaili juaj eshte invalid';
+                        console.log('Email validation failed');
+                        return ;
+                    }
+                    if(!passwordRegex.test(pasInput.value.trim())){
+                        
+                        passwordError.innerText='Passwordi duhet te filloje me shkronje te madhe dhe te perfundoj me 3 numra';
+                        console.log('Password validation failed');
+                        return ;
+                           }
+                           
+                     alert('Ju u regjistruat me sukses');
+                     window.location.href = "Projekti.html"; 
+
+                        //    successMessage.style.display = 'block';
+                           console.log('Validation successful');
+
+                      
+                }
+
+                           
+                
+                
+
+                    
+                </script>
+
+                </div>
+            
 </body>
 </html>
