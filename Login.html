@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login">
+        <form id="forma">
+            <label> <input id="username" type="text" placeholder="Username" autocomplete="username"></input></label>
+            <div id="usernameError"></div>
+                <label> <input id="password" type="password" placeholder="******" autocomplete="new-password"></input></label>
+                <div id="passwordError"></div>
+
+
+                <button type="button" onclick="validate()" >Submit</button>
+            
+        
+        <script>
+            let usernameRegex=/^[A-Za-z0-9]+$/;
+            let passwordRegex=/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+            function validate(){
+                let usernameInput=document.getElementById('username');
+                let usernameError=document.getElementById('usernameError');
+
+                let pasInput=document.getElementById('password');
+                let passwordError=document.getElementById('passwordError');
+
+                usernameError.innerText='';
+                passwordError.innerText='';
+
+                if(!usernameRegex.test(usernameInput.value.trim())){
+                        
+                        usernameError.innerText='Username duhet te filloje me shkronje te madhe dhe duhet te permbaje se paku 3 elemente';
+                        return ;
+                           }
+                           if(!passwordRegex.test(pasInput.value.trim())){
+                        
+                        passwordError.innerText='Passwordi duhet te filloje me shkronje te madhe dhe te perfundoj me 3 numra';
+                        
+                        return ;
+                           }
+
+                           alert('Login-i juaj u be me sukses');
+                           window.location.href = "Projekti.html";
+                           
+                           
+
+            }
+        </script>
+    </div>
+    
+</body>
+</html>
