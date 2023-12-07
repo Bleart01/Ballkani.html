@@ -1,6 +1,7 @@
 body, html{ 
     margin: 0;
     padding: 0;
+    background-color: #333;
  } 
  
  nav{
@@ -13,7 +14,7 @@ body, html{
       background-size: cover; 
  background-position: center;
      width: 100%;
-     height: 580px;
+     
      
  }
   
@@ -120,52 +121,32 @@ body, html{
  .regjistrohu:hover{
      background-color: black;
  }
- .ballkani-img{
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-   
 
-    
-    
-     
-}
-
-.balk-1{
-    margin-right: 400px;
-}
-
-.fushkosova{
-    margin-left: 450px;
-}
-
- h2{
-    
-    display: flex;
-    justify-content: center;
+ .cartat-portjer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+ }
+ .kategoria{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 60px;
+   margin-left: 50px;
+   color: #FF6302;
+   gap: 20px;
  }
 
-.title-img2{
-    display: flex;
-    justify-content: end;
-    margin-left: 410px;
-}
+ .cart{
+    background-color:black ;
+    border: 2px solid orange;
+    color: white;
+    margin: 50px;
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+  
+    
+ }
 
-.h2-tag{
-    margin-top: 70px;
-}
-
-div span{
-  color: #FF6302;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-top: 70px;
-}
-
-.uefa-tabel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-}
-
-
+ .cart-text{
+    padding-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+ }
