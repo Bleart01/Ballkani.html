@@ -1,4 +1,8 @@
 <?php
+$host = "localhost";
+$dbname = "ballkani";
+$username = "root";
+$password = "";
 class Databaza {
     private $host;
     private $dbname;
@@ -15,13 +19,14 @@ class Databaza {
     }
 
     public function connect() {
-        $this->connection = mysqli_connect($this->host, $this->username, $this->password, $this->dbname);
-        if (!$this->connection) {
-            die("Connection failed: " . mysqli_connect_error());
+        $this->connection = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+        
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
         }
+        
+        return $this->connection;
     }
-
-    // Metodat e tjera për përdorimin e lidhjes me bazën e të dhënave...
     
     public function closeConnection() {
         if ($this->connection) {
@@ -30,16 +35,27 @@ class Databaza {
     }
 
     private function bindParams($stmt, &$params) {
-        $paramTypes = str_repeat('s', count($params));
-        
-        // Krijoni një array të referencave për parametrat
+        $paramTypes = array_shift($params); 
+
         $bindParams = [$stmt, $paramTypes];
         foreach ($params as &$param) {
             $bindParams[] = &$param;
         }
-    
+
         // Përdorimi i call_user_func_array në vend të operatorit ...
         call_user_func_array('mysqli_stmt_bind_param', $bindParams);
+    }
+
+    public function shtoLojtar($emri, $mbiemri, $datelindja, $nacionaliteti, $pozita) {
+        $query = "INSERT INTO lojtaret (emri, mbiemri, data_lindjes, nacionaliteti, pozita) VALUES (?, ?, ?, ?, ?)";
+        $params = ["sssss", $emri, $mbiemri, $datelindja, $nacionaliteti, $pozita];
+        $this->executeQuery($query, $params);
+    }
+
+    public function shtoNdeshje($skuadra1, $skuadra2, $data_kompeticionit) {
+        $query = "INSERT INTO ndeshjet (skuadra1, skuadra2, data_kompeticionit) VALUES (?, ?, ?)";
+        $params = ["sss", $skuadra1, $skuadra2, $data_kompeticionit];
+        $this->executeQuery($query, $params);
     }
 
     public function executeQuery($query, $params) {
@@ -55,6 +71,21 @@ class Databaza {
         mysqli_stmt_execute($stmt);
     
         return $stmt;
+}
+public function fetchData($query, $params) {
+    $stmt = $this->executeQuery($query, $params);
+
+    $result = mysqli_stmt_get_result($stmt);
+    $data = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+
+    mysqli_free_result($result);
+    mysqli_stmt_close($stmt);
+
+    return $data;
 }
 }
 ?>
